@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://cbuk38webdcpd"]
+
+[ext_resource type="Script" uid="uid://opwqyvox2f7t" path="res://scripts/ShipData.gd" id="1_seyoy"]
+[ext_resource type="Texture2D" uid="uid://c1nvdc6tagih7" path="res://sprites/ship_1.png" id="2_nlngj"]
+
+[resource]
+script = ExtResource("1_seyoy")
+max_speed = 8.0
+thrust_power = 2.0
+fire_rate = 4.0
+ship_sprite = ExtResource("2_nlngj")
+metadata/_custom_type_script = "uid://opwqyvox2f7t"
