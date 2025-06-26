@@ -26,6 +26,14 @@ window/stretch/mode="canvas_items"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[file_customization]
+
+folder_colors={
+"res://scences/": "teal",
+"res://scripts/": "purple",
+"res://sprites/": "pink"
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
