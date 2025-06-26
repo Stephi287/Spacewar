@@ -1,7 +1,14 @@
 extends CharacterBody2D
 
 @export var ship_data: ShipData
+@export var rotation_speed = 3
 
 func _process(delta: float) -> void:
-	var velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	position += velocity * delta * 150
+	var direction = Input.get_axis("ui_left", "ui_right")
+	rotation += direction * rotation_speed * delta
+	
+	if Input.is_action_pressed("Controller_A"):
+		var thrust_vector = Vector2.UP.rotated(rotation)
+		var velocity = thrust_vector * ship_data.thrust_power * delta
+	
+		position += velocity
