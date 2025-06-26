@@ -29,6 +29,7 @@ version_control/autoload_on_startup=true
 [file_customization]
 
 folder_colors={
+"res://custom_resources/": "orange",
 "res://scences/": "teal",
 "res://scripts/": "purple",
 "res://sprites/": "pink"
