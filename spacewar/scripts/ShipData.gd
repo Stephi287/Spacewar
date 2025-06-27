@@ -1,5 +1,5 @@
-extends Resource
 class_name ShipData
+extends Resource
 
 @export var max_speed: float
 @export var thrust_power: float

@@ -5,7 +5,8 @@ extends CharacterBody2D
 @export var rotation_speed = 5
 @export var player_id: int = 0
 @export var projectile_scene: PackedScene
-var fire_timer = 0.0
+
+var _fire_timer = 0.0
 
 @onready var screen_size = get_viewport().get_visible_rect().size
 @onready var ship_sprite = $Sprite2D
@@ -14,7 +15,7 @@ func _ready() -> void:
 	ship_sprite.texture = ship_data.ship_sprite
 	
 func _physics_process(delta: float) -> void:
-	fire_timer -= delta
+	_fire_timer -= delta
 	
 	var rotate_left = "Controller_%d_LEFT" % player_id
 	var rotate_right = "Controller_%d_RIGHT" % player_id
@@ -31,8 +32,8 @@ func _physics_process(delta: float) -> void:
 		velocity += thrust
 		velocity = velocity.limit_length(ship_data.max_speed)
 	
-	if Input.is_action_pressed(fire) and fire_timer <= 0:
-		fire_timer = ship_data.fire_rate
+	if Input.is_action_pressed(fire) and _fire_timer <= 0:
+		_fire_timer = ship_data.fire_rate
 		fire_projectile()
 		
 	move_and_slide()
@@ -54,9 +55,6 @@ func fire_projectile():
 	projectile.direction = Vector2.UP.rotated(rotation)
 	projectile.origin_player_id = player_id  # 👈 WICHTIG!
 	get_tree().current_scene.add_child(projectile)
-	
-func _process(delta: float) -> void:
-	pass
 
 func handle_screen_wrap():
 	# Wrap horizontal
