@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_seyoy")
 max_speed = 200.0
-thrust_power = 100.0
-fire_rate = 4.0
+thrust_power = 150.0
+fire_rate = 0.5
 ship_sprite = ExtResource("2_nlngj")
 metadata/_custom_type_script = "uid://opwqyvox2f7t"

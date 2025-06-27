@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://biq6i2vren4jd"]
+[gd_scene load_steps=5 format=3 uid="uid://biq6i2vren4jd"]
 
 [ext_resource type="PackedScene" uid="uid://cat6jbpvuf78w" path="res://scences/ship.tscn" id="1_i2nf4"]
 [ext_resource type="Resource" uid="uid://cbuk38webdcpd" path="res://custom_resources/ShipAData.tres" id="2_am3uj"]
+[ext_resource type="PackedScene" uid="uid://dqo10kjy4o7bk" path="res://scences/projectile.tscn" id="3_3if0j"]
 [ext_resource type="Resource" uid="uid://bfnfuyiqor36a" path="res://custom_resources/ShipBData.tres" id="3_8edsk"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Ship" parent="." instance=ExtResource("1_i2nf4")]
+[node name="Ship" parent="." groups=["A"] instance=ExtResource("1_i2nf4")]
+z_index = 1
 position = Vector2(108, 74)
 ship_data = ExtResource("2_am3uj")
+projectile_scene = ExtResource("3_3if0j")
 
 [node name="Ship2" parent="." instance=ExtResource("1_i2nf4")]
+z_index = 1
 position = Vector2(199, 135)
 ship_data = ExtResource("3_8edsk")
 player_id = 1
