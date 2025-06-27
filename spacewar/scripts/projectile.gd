@@ -3,6 +3,7 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Ship and body.player_id != origin_player_id:
+		Global.add_point(origin_player_id)
 		body.queue_free()
 		queue_free()
 

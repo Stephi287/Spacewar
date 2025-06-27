@@ -1,20 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://biq6i2vren4jd"]
+[gd_scene load_steps=7 format=3 uid="uid://biq6i2vren4jd"]
 
 [ext_resource type="PackedScene" uid="uid://cat6jbpvuf78w" path="res://scences/ship.tscn" id="1_i2nf4"]
 [ext_resource type="Resource" uid="uid://cbuk38webdcpd" path="res://custom_resources/ShipAData.tres" id="2_am3uj"]
 [ext_resource type="PackedScene" uid="uid://dqo10kjy4o7bk" path="res://scences/projectile.tscn" id="3_3if0j"]
 [ext_resource type="Resource" uid="uid://bfnfuyiqor36a" path="res://custom_resources/ShipBData.tres" id="3_8edsk"]
+[ext_resource type="PackedScene" uid="uid://drnux64mq1uuk" path="res://scences/star.tscn" id="5_41s58"]
+
+[sub_resource type="GDScript" id="GDScript_41s58"]
 
 [node name="Main" type="Node2D"]
+script = SubResource("GDScript_41s58")
 
 [node name="Ship" parent="." groups=["A"] instance=ExtResource("1_i2nf4")]
 z_index = 1
-position = Vector2(108, 74)
+position = Vector2(49, 43)
 ship_data = ExtResource("2_am3uj")
 projectile_scene = ExtResource("3_3if0j")
 
 [node name="Ship2" parent="." instance=ExtResource("1_i2nf4")]
 z_index = 1
-position = Vector2(199, 135)
+position = Vector2(287, 213)
 ship_data = ExtResource("3_8edsk")
 player_id = 1
+
+[node name="Star" parent="." instance=ExtResource("5_41s58")]
+position = Vector2(169, 122)
