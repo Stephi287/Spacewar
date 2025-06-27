@@ -10,6 +10,7 @@ var _fire_timer = 0.0
 
 @onready var screen_size = get_viewport().get_visible_rect().size
 @onready var ship_sprite = $Sprite2D
+@onready var star = get_tree().current_scene.get_node("Star")  # oder anderer Pfad
 
 func _ready() -> void:
 	ship_sprite.texture = ship_data.ship_sprite
@@ -43,6 +44,8 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(i)
 		if collision.get_collider() is Ship:
 			_on_collision_with_ship(collision.get_collider())
+	
+	apply_gravity_from_star(delta)
 
 func _on_collision_with_ship(other_ship):
 	queue_free()
@@ -68,3 +71,17 @@ func handle_screen_wrap():
 		position.y = screen_size.y
 	elif position.y > screen_size.y:
 		position.y = 0
+
+func apply_gravity_from_star(delta: float) -> void:
+	if star == null:
+		return
+
+	var to_star = star.global_position - global_position
+	var distance = to_star.length()
+
+	# Sicherheitsabstand
+	if distance < 10:
+		return
+
+	var gravity_force = to_star.normalized() * star.gravity_strength / (distance * distance)
+	velocity += gravity_force * delta

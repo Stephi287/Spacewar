@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://drnux64mq1uuk"]
+
+[ext_resource type="Texture2D" uid="uid://c068fxes0yhs2" path="res://sprites/star.png" id="1_rtxdj"]
+[ext_resource type="Script" uid="uid://b3dnr25cowpjg" path="res://scripts/star.gd" id="1_x5thp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5thp"]
+radius = 10.0499
+
+[node name="Star" type="Area2D"]
+gravity_point = true
+gravity_point_unit_distance = 1024.0
+gravity = 1129.93
+script = ExtResource("1_x5thp")
+gravity_strength = 70000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_x5thp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rtxdj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
