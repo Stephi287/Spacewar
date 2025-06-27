@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://biq6i2vren4jd"]
+[gd_scene load_steps=7 format=3 uid="uid://biq6i2vren4jd"]
 
 [ext_resource type="PackedScene" uid="uid://cat6jbpvuf78w" path="res://scences/ship.tscn" id="1_i2nf4"]
 [ext_resource type="Resource" uid="uid://cbuk38webdcpd" path="res://custom_resources/ShipAData.tres" id="2_am3uj"]
 [ext_resource type="PackedScene" uid="uid://dqo10kjy4o7bk" path="res://scences/projectile.tscn" id="3_3if0j"]
 [ext_resource type="Resource" uid="uid://bfnfuyiqor36a" path="res://custom_resources/ShipBData.tres" id="3_8edsk"]
 [ext_resource type="PackedScene" uid="uid://drnux64mq1uuk" path="res://scences/star.tscn" id="5_41s58"]
+[ext_resource type="Script" uid="uid://bxccleb3bkswy" path="res://scripts/UI.gd" id="6_cfdqf"]
 
 [node name="Main" type="Node2D"]
 
@@ -23,3 +24,22 @@ projectile_scene = ExtResource("3_3if0j")
 
 [node name="Star" parent="." instance=ExtResource("5_41s58")]
 position = Vector2(169, 122)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_cfdqf")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.75
+anchor_top = -0.075
+anchor_right = 4.325
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0:0"
+metadata/_edit_use_anchors_ = true
