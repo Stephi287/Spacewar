@@ -21,3 +21,7 @@ func get_winner() -> int:
 		return 1
 	else:
 		return -1
+
+func reset_global():
+	score_p1 = 0
+	score_p2 = 0
