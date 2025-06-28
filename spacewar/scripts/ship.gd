@@ -48,9 +48,9 @@ func _physics_process(delta: float) -> void:
 	apply_gravity_from_star(delta)
 
 func _on_collision_with_ship(other_ship):
-	queue_free()
-	other_ship.queue_free()
-
+	position = Global.get_reset_pos(player_id)
+	other_ship.position = Global.get_reset_pos(other_ship.player_id)
+	
 func fire_projectile():
 	var projectile = projectile_scene.instantiate()
 	projectile.position = position
