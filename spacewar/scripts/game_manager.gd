@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var win_animation = $"../AnimationPlayer"
 @onready var win_label = $"../Control/WinName"
+@onready var info_label = $"../Control/RestartInfo"
 var win_color = [Color("eb4953"), Color("0096d1")]
 var win = false
 
@@ -20,4 +21,5 @@ func _win_animation(id: int):
 	win_label.text = str("Player ", id+1, " wins!")
 	win_label.add_theme_color_override("font_color", win_color[id])
 	win_animation.play("WinNameBlink")
+	info_label.visible = true
 	win = true

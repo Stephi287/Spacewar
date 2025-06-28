@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://biq6i2vren4jd"]
+[gd_scene load_steps=12 format=3 uid="uid://biq6i2vren4jd"]
 
 [ext_resource type="PackedScene" uid="uid://cat6jbpvuf78w" path="res://scences/ship.tscn" id="1_i2nf4"]
 [ext_resource type="Resource" uid="uid://cbuk38webdcpd" path="res://custom_resources/ShipAData.tres" id="2_am3uj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bfnfuyiqor36a" path="res://custom_resources/ShipBData.tres" id="3_8edsk"]
 [ext_resource type="PackedScene" uid="uid://drnux64mq1uuk" path="res://scences/star.tscn" id="5_41s58"]
 [ext_resource type="Script" uid="uid://bxccleb3bkswy" path="res://scripts/UI.gd" id="6_cfdqf"]
+[ext_resource type="FontFile" uid="uid://cwrxodf8j2hhg" path="res://fonts/ByteBounce.ttf" id="7_f1cyw"]
 [ext_resource type="Script" uid="uid://mug6ec04om32" path="res://scripts/game_manager.gd" id="7_nwhyr"]
 
 [sub_resource type="Animation" id="Animation_nwhyr"]
@@ -50,19 +51,19 @@ _data = {
 
 [node name="Ship" parent="." instance=ExtResource("1_i2nf4")]
 z_index = 1
-position = Vector2(49, 43)
+position = Vector2(19, 21)
 ship_data = ExtResource("2_am3uj")
 projectile_scene = ExtResource("3_3if0j")
 
 [node name="Ship2" parent="." instance=ExtResource("1_i2nf4")]
 z_index = 1
-position = Vector2(98, 41)
+position = Vector2(293, 223)
 ship_data = ExtResource("3_8edsk")
 player_id = 1
 projectile_scene = ExtResource("3_3if0j")
 
 [node name="Star" parent="." instance=ExtResource("5_41s58")]
-position = Vector2(169, 122)
+position = Vector2(160, 120)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -75,22 +76,41 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 3.75
-anchor_top = -0.075
-anchor_right = 4.325
-anchor_bottom = 0.5
+anchor_left = 3.65
+anchor_top = -0.025
+anchor_right = 4.5
+anchor_bottom = 0.55
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_f1cyw")
+theme_override_font_sizes/font_size = 32
 text = "0:0"
 metadata/_edit_use_anchors_ = true
 
 [node name="WinName" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 84.0
-offset_right = 220.0
-offset_bottom = 107.0
+offset_left = 80.0
+offset_top = 82.0
+offset_right = 246.0
+offset_bottom = 105.0
 theme_override_colors/font_color = Color(3.17663e-06, 0.589773, 0.818366, 1)
+theme_override_fonts/font = ExtResource("7_f1cyw")
+theme_override_font_sizes/font_size = 32
+
+[node name="RestartInfo" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 74.0
+offset_top = 138.0
+offset_right = 208.0
+offset_bottom = 149.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_f1cyw")
+theme_override_font_sizes/font_size = 16
+text = "(Press START to reset)"
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7_nwhyr")

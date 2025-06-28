@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c1nvdc6tagih7" path="res://sprites/ship_1.png" id="2_83fe7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tajyq"]
-radius = 5.0
+radius = 7.0
 
 [node name="Ship" type="CharacterBody2D"]
 script = ExtResource("1_83fe7")
