@@ -7,6 +7,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Ship:
 		body.position = Global.get_reset_pos(body.player_id)
 		body.velocity = Vector2(0,0)
+		Global.make_unvincible(body)
 		if body.player_id == 0:
 			Global.add_point(1)
 		elif body.player_id == 1:

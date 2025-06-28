@@ -4,7 +4,10 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body is Ship and body.player_id != origin_player_id:
 		Global.add_point(origin_player_id)
+		Input.start_joy_vibration(body.player_id,0.5,1,0.5)
 		body.position = Global.get_reset_pos(body.player_id)
+		body.velocity = Vector2(0,0)
+		Global.make_unvincible(body)
 		queue_free()
 
 @export var speed = 400.0
