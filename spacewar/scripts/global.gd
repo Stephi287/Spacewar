@@ -2,6 +2,7 @@ extends Node2D
 
 var score_p1 = 0
 var score_p2 = 0
+var unvincible = false
 
 func add_point(player_id):
 	match player_id:
@@ -24,11 +25,14 @@ func get_winner() -> int:
 
 func make_unvincible(ship):
 	set_deferred("ship_collision.disabled", true)
+	unvincible = true
 	var timer = Timer.new()
 	add_child(timer)
 	timer.start(1.5)
 	await timer.timeout
-	ship.ship_collision.disabled = false
+	if ship:
+		ship.ship_collision.disabled = false
+	unvincible = false
 
 func reset_global():
 	score_p1 = 0
