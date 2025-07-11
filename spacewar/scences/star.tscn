@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://drnux64mq1uuk"]
+[gd_scene load_steps=5 format=3 uid="uid://drnux64mq1uuk"]
 
 [ext_resource type="Script" uid="uid://b3dnr25cowpjg" path="res://scripts/star.gd" id="1_x5thp"]
 [ext_resource type="Texture2D" uid="uid://ctsg0xxavho2n" path="res://sprites/star_sparkle.png" id="2_x5thp"]
+[ext_resource type="AudioStream" uid="uid://dvdmeq8f1okr4" path="res://sfx/Lose.wav" id="3_0onkp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x5thp"]
 radius = 8.0
@@ -19,5 +20,10 @@ shape = SubResource("CircleShape2D_x5thp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_x5thp")
+
+[node name="StarSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0onkp")
+volume_db = -3.539
+pitch_scale = 0.98
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

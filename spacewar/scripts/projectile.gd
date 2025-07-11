@@ -9,6 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 			body.position = Global.get_reset_pos(body.player_id)
 			body.velocity = Vector2(0,0)
 			Global.make_unvincible(body)
+			Global.play_hit_sound()
 			queue_free()
 
 @export var speed = 400.0

@@ -1,8 +1,13 @@
 extends Node2D
 
+@onready var hit_sound = $HitSound
+
 var score_p1 = 0
 var score_p2 = 0
 var unvincible = false
+
+func play_hit_sound():
+	hit_sound.play()
 
 func add_point(player_id):
 	match player_id:

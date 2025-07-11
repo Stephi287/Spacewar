@@ -14,6 +14,7 @@ var _fire_timer = 0.0
 @onready var ship_particle = $CPUParticles2D
 @onready var laser_sound = $LaserSound
 @onready var explsion_sound = $ExplosionSound
+@onready var thrust_sound = $ThrustSound
 @onready var star = get_tree().current_scene.get_node("Star")  # oder anderer Pfad
 
 func _ready() -> void:
@@ -41,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		ship_particle.emitting = true
 	else:
 		ship_particle.emitting = false
+		#thrust_sound.playing = false
+	if Input.is_action_just_pressed(thrust_action):
+		thrust_sound.play()
 	
 	if Input.is_action_pressed(fire) and _fire_timer <= 0:
 		_fire_timer = ship_data.fire_rate
