@@ -11,6 +11,9 @@ var _fire_timer = 0.0
 @onready var screen_size = get_viewport().get_visible_rect().size
 @onready var ship_sprite = $Sprite2D
 @onready var ship_collision = $CollisionShape2D
+@onready var ship_particle = $CPUParticles2D
+@onready var laser_sound = $LaserSound
+@onready var explsion_sound = $ExplosionSound
 @onready var star = get_tree().current_scene.get_node("Star")  # oder anderer Pfad
 
 func _ready() -> void:
@@ -33,10 +36,16 @@ func _physics_process(delta: float) -> void:
 	
 		velocity += thrust
 		velocity = velocity.limit_length(ship_data.max_speed)
+		
+		ship_particle.direction = thrust_vector * -1
+		ship_particle.emitting = true
+	else:
+		ship_particle.emitting = false
 	
 	if Input.is_action_pressed(fire) and _fire_timer <= 0:
 		_fire_timer = ship_data.fire_rate
 		fire_projectile()
+		laser_sound.play()
 		
 	move_and_slide()
 	handle_screen_wrap()
@@ -58,6 +67,8 @@ func _on_collision_with_ship(other_ship):
 	other_ship.position = Global.get_reset_pos(other_ship.player_id)
 	other_ship.velocity = Vector2(0,0)
 	Global.make_unvincible(other_ship)
+	
+	explsion_sound.play()
 	
 func fire_projectile():
 	var projectile = projectile_scene.instantiate()

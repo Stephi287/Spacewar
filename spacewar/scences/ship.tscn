@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cat6jbpvuf78w"]
+[gd_scene load_steps=7 format=3 uid="uid://cat6jbpvuf78w"]
 
 [ext_resource type="Script" uid="uid://2owau1krqv0g" path="res://scripts/ship.gd" id="1_83fe7"]
 [ext_resource type="Texture2D" uid="uid://c1nvdc6tagih7" path="res://sprites/ship_1.png" id="2_83fe7"]
+[ext_resource type="Texture2D" uid="uid://btonqlwvio55e" path="res://sprites/particle_small.png" id="3_tajyq"]
+[ext_resource type="AudioStream" uid="uid://cjuim5bifeuye" path="res://sfx/sfx_wpn_laser7.wav" id="4_pg7f0"]
+[ext_resource type="AudioStream" uid="uid://bhqy54hplw6dx" path="res://sfx/Explosion2.wav" id="5_v4kp0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tajyq"]
 radius = 7.0
 
 [node name="Ship" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_83fe7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,3 +19,23 @@ shape = SubResource("CircleShape2D_tajyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_83fe7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(0, 4)
+amount = 50
+texture = ExtResource("3_tajyq")
+lifetime = 0.2
+speed_scale = 0.5
+randomness = 0.23
+emission_shape = 1
+emission_sphere_radius = 2.77
+gravity = Vector2(100, 100)
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pg7f0")
+volume_db = -11.938
+pitch_scale = 0.78
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_v4kp0")
