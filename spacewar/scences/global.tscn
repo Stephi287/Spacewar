@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://mrdbf3ognywf"]
+[gd_scene load_steps=3 format=3 uid="uid://mrdbf3ognywf"]
 
 [ext_resource type="Script" uid="uid://c7uvyfc0wdwi7" path="res://scripts/global.gd" id="1_64u37"]
+[ext_resource type="AudioStream" uid="uid://d24s7kk2qfbys" path="res://sfx/concept1d.ogg" id="2_75rn3"]
 
 [node name="Global" type="Node2D"]
 script = ExtResource("1_64u37")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_75rn3")
+volume_db = -8.954
+autoplay = true
