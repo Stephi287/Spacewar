@@ -62,15 +62,20 @@ func _physics_process(delta: float) -> void:
 	apply_gravity_from_star(delta)
 
 func _on_collision_with_ship(other_ship):
+	#Global.make_unvincible(self)
+	#Global.make_unvincible(other_ship)
+	
 	Input.start_joy_vibration(player_id,1,1,0.5)
+	ship_sprite.visible = false
+	await Global.dead(position, player_id, self)
 	position = Global.get_reset_pos(player_id)
+	ship_sprite.visible = true
 	velocity = Vector2(0,0)
-	Global.make_unvincible(self)
 
 	Input.start_joy_vibration(player_id,0,1,0.5)
+	await Global.dead(other_ship.position, other_ship.player_id, other_ship)
 	other_ship.position = Global.get_reset_pos(other_ship.player_id)
 	other_ship.velocity = Vector2(0,0)
-	Global.make_unvincible(other_ship)
 	
 	explsion_sound.play()
 	

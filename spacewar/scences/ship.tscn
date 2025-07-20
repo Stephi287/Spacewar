@@ -29,6 +29,7 @@ texture = ExtResource("3_tajyq")
 lifetime = 0.2
 speed_scale = 0.5
 randomness = 0.23
+lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 2.77
 gravity = Vector2(100, 100)
@@ -43,4 +44,4 @@ stream = ExtResource("5_v4kp0")
 
 [node name="ThrustSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_byr8n")
-volume_db = -4.822
+volume_db = -11.021

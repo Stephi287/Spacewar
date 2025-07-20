@@ -1,8 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://mrdbf3ognywf"]
+[gd_scene load_steps=13 format=3 uid="uid://mrdbf3ognywf"]
 
 [ext_resource type="Script" uid="uid://c7uvyfc0wdwi7" path="res://scripts/global.gd" id="1_64u37"]
 [ext_resource type="AudioStream" uid="uid://d24s7kk2qfbys" path="res://sfx/concept1d.ogg" id="2_75rn3"]
 [ext_resource type="AudioStream" uid="uid://ci37sw2n8vkwo" path="res://sfx/Explosion4.wav" id="3_t52vp"]
+[ext_resource type="Texture2D" uid="uid://bv74kewib5hqt" path="res://sprites/explosion_1.png" id="4_lrts0"]
+[ext_resource type="Texture2D" uid="uid://cuyio4pnsuvc3" path="res://sprites/explosion_2.png" id="5_a1rbn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrqd8"]
+atlas = ExtResource("4_lrts0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_643d4"]
+atlas = ExtResource("4_lrts0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra3x8"]
+atlas = ExtResource("4_lrts0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb5hg"]
+atlas = ExtResource("5_a1rbn")
+region = Rect2(0, 0, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdfca"]
+atlas = ExtResource("5_a1rbn")
+region = Rect2(15, 0, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw4lj"]
+atlas = ExtResource("5_a1rbn")
+region = Rect2(30, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1rbn"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_nrqd8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_643d4")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_ra3x8")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_wb5hg")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_vdfca")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_cw4lj")
+}],
+"loop": false,
+"name": &"explosion2",
+"speed": 5.0
+}]
 
 [node name="Global" type="Node2D"]
 script = ExtResource("1_64u37")
@@ -16,3 +73,8 @@ autoplay = true
 stream = ExtResource("3_t52vp")
 volume_db = -0.075
 pitch_scale = 1.68
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_a1rbn")
+animation = &"explosion2"

@@ -6,10 +6,12 @@ func _on_body_entered(body: Node2D) -> void:
 		if not Global.unvincible:
 			Global.add_point(origin_player_id)
 			Input.start_joy_vibration(body.player_id,0.5,1,0.5)
-			body.position = Global.get_reset_pos(body.player_id)
 			body.velocity = Vector2(0,0)
-			Global.make_unvincible(body)
 			Global.play_hit_sound()
+			
+			await Global.dead(body.position, body.player_id, body)
+			body.position = Global.get_reset_pos(body.player_id)
+			#Global.make_unvincible(body)
 			queue_free()
 
 @export var speed = 400.0
