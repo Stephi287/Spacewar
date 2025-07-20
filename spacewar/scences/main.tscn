@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://biq6i2vren4jd"]
+[gd_scene load_steps=15 format=3 uid="uid://biq6i2vren4jd"]
 
 [ext_resource type="PackedScene" uid="uid://cat6jbpvuf78w" path="res://scences/ship.tscn" id="1_i2nf4"]
 [ext_resource type="Resource" uid="uid://cbuk38webdcpd" path="res://custom_resources/ShipAData.tres" id="2_am3uj"]
@@ -9,6 +9,8 @@
 [ext_resource type="FontFile" uid="uid://cwrxodf8j2hhg" path="res://fonts/ByteBounce.ttf" id="7_f1cyw"]
 [ext_resource type="Script" uid="uid://mug6ec04om32" path="res://scripts/game_manager.gd" id="7_nwhyr"]
 [ext_resource type="Texture2D" uid="uid://3lcx41p2xobk" path="res://sprites/background.png" id="9_0jhw3"]
+[ext_resource type="Script" uid="uid://decc7ahtxx54n" path="res://scripts/sound_manager.gd" id="10_fx74m"]
+[ext_resource type="AudioStream" uid="uid://ci37sw2n8vkwo" path="res://sfx/Explosion4.wav" id="11_37t14"]
 
 [sub_resource type="Animation" id="Animation_f1cyw"]
 length = 0.001
@@ -125,3 +127,11 @@ libraries = {
 z_index = -2
 position = Vector2(160, 120)
 texture = ExtResource("9_0jhw3")
+
+[node name="SoundManager" type="Node2D" parent="."]
+script = ExtResource("10_fx74m")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("11_37t14")
+volume_db = -0.075
+pitch_scale = 1.68

@@ -15,6 +15,7 @@ var _fire_timer = 0.0
 @onready var laser_sound = $LaserSound
 @onready var explsion_sound = $ExplosionSound
 @onready var thrust_sound = $ThrustSound
+@onready var explosion_animation = $ExplosionAnimation
 @onready var star = get_tree().current_scene.get_node("Star")  # oder anderer Pfad
 
 func _ready() -> void:
@@ -67,13 +68,13 @@ func _on_collision_with_ship(other_ship):
 	
 	Input.start_joy_vibration(player_id,1,1,0.5)
 	ship_sprite.visible = false
-	await Global.dead(position, player_id, self)
+	await dead(position, player_id, self)
 	position = Global.get_reset_pos(player_id)
 	ship_sprite.visible = true
 	velocity = Vector2(0,0)
 
 	Input.start_joy_vibration(player_id,0,1,0.5)
-	await Global.dead(other_ship.position, other_ship.player_id, other_ship)
+	await dead(other_ship.position, other_ship.player_id, other_ship)
 	other_ship.position = Global.get_reset_pos(other_ship.player_id)
 	other_ship.velocity = Vector2(0,0)
 	
@@ -113,3 +114,28 @@ func apply_gravity_from_star(delta: float) -> void:
 
 	var gravity_force = to_star.normalized() * star.gravity_strength / (distance * distance)
 	velocity += gravity_force * delta
+
+func dead(pos, id, body):
+	explosion_animation.visible = true
+	explosion_animation.position = pos
+	make_unvincible(body)
+	if id == 0:
+		explosion_animation.play("explosion")
+		await explosion_animation.animation_finished
+		explosion_animation.visible = false
+	else:
+		explosion_animation.play("explosion2")
+		await explosion_animation.animation_finished
+		explosion_animation.visible = false
+
+
+func make_unvincible(ship):
+	set_deferred("ship_collision.disabled", true)
+	Global.unvincible = true
+	var timer = Timer.new()
+	add_child(timer)
+	timer.start(1.5)
+	await timer.timeout
+	if ship:
+		ship.ship_collision.disabled = false
+	Global.unvincible = false

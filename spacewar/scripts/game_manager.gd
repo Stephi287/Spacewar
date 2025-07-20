@@ -23,3 +23,9 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("START"):
 			Global.reset_global()
 			get_tree().reload_current_scene()
+
+func add_point(player_id):
+	if not win_1 and not win_2:
+		match player_id:
+			0: Global.score_p1 += 1
+			1: Global.score_p2 += 1

@@ -1,15 +1,18 @@
 class_name Projectile
 extends Area2D
 
+@onready var game_manager = $"../GameManager"
+@onready var sound_manager = $"../SoundManager"
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Ship and body.player_id != origin_player_id:
 		if not Global.unvincible:
-			Global.add_point(origin_player_id)
+			game_manager.add_point(origin_player_id)
 			Input.start_joy_vibration(body.player_id,0.5,1,0.5)
 			body.velocity = Vector2(0,0)
-			Global.play_hit_sound()
+			sound_manager.play_hit_sound()
 			
-			await Global.dead(body.position, body.player_id, body)
+			await body.dead(body.position, body.player_id, body)
 			body.position = Global.get_reset_pos(body.player_id)
 			#Global.make_unvincible(body)
 			queue_free()
